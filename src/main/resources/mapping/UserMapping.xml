@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="life.majiang.community.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="life.majiang.community.model.User">
+        <result column="account_id" jdbcType="INTEGER" property="account_id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="token" jdbcType="char" property="token" />
+        <result column="gmt_create" jdbcType="bigint" property="gmt_create" />
+        <result column="gmt_modified" jdbcType="bigint" property="gmt_modified" />
+    </resultMap>
+
+<!--    <select id="Sel" resultType="com.example.entity.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
+
+</mapper>
