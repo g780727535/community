@@ -1,10 +1,13 @@
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>达梦社区</title>
+    <title>发布___达梦社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/community.css"/>
+
 
     <script src="/dist/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -49,6 +52,42 @@
             </ul>
         </div>
     </div>
+
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs12" >
+
+            <h2><span class="glyphicon  glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题（简单扼要）</label>
+                    <input type="text" class="form-control" id="title"  th:value="${title}" name="title" placeholder="问题标题.....">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题补充（必填 按照提示来写）</label>
+                    <textarea name="description" id="description" class="form-control" th:text="${description}" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" id="tag" th:value="${tag}" name="tag" placeholder="输入标签，以，号隔开">
+                </div>
+                <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs12" th:text="${error}" th:if="${error != null}"></div>
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs12" ><button type="submit" class="btn btn-success btn-publish">发布</button></div>
+
+
+
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs12" >
+            <h3>问题发起指南</h3>
+            .问题描述：请用简洁的语言<br>
+            .问题补充：详细补充你的问题内容<br>
+            .选择标签：选择一个或者多个合适的标签<br>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -41,7 +41,6 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callBack(@RequestParam(name ="code") String code,
                            @RequestParam(name="state") String state,
-                           HttpServletRequest request,
                            HttpServletResponse response){
 
 
@@ -52,10 +51,11 @@ public class AuthorizeController {
         accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
 
-        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser githubUser = githubProvider.githubUser(accessToken);
 
-        if (githubUser!=null){
+        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        GithubUser githubUser = githubProvider.githubUserL(accessToken);
+
+        if (githubUser!=null && githubUser.getId() != null){
             System.out.println("你看你"+githubUser);
             User user = new User();
 
@@ -66,6 +66,7 @@ public class AuthorizeController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarurl(githubUser.getAvatar_url());
             System.out.println("用户是+++ " + user);
             userMapper.insert(user);
 
