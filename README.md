@@ -7,6 +7,11 @@ https://spring.io
 ## 工具
 https://git-scm/download
 
+https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values
+
+[Spring Dev Tool]https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-boot-devtools
+
+[markdown 插件]http://editor.md.ipandao.com/
 ## 脚本
 """
 sql
