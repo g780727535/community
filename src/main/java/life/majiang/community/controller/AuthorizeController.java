@@ -3,14 +3,12 @@ package life.majiang.community.controller;
 
 import life.majiang.community.dto.AccessTokenDTO;
 import life.majiang.community.dto.GithubUser;
-import life.majiang.community.mapper.UserMapper;
 import life.majiang.community.model.User;
 import life.majiang.community.provider.GithubProvider;
-
+import life.majiang.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,14 +32,17 @@ public class AuthorizeController {
     @Value("${github.redirect.uri}")
     private  String redirectUri;
 
-    @Autowired
-    private UserMapper userMapper;
 
+
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/callback")
     public String callBack(@RequestParam(name ="code") String code,
                            @RequestParam(name="state") String state,
-                           HttpServletResponse response){
+                           HttpServletResponse response,
+                           HttpServletRequest request){
 
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
@@ -68,17 +69,34 @@ public class AuthorizeController {
             user.setGmtModified(user.getGmtCreate());
             user.setAvatarurl(githubUser.getAvatar_url());
             System.out.println("用户是+++ " + user);
-            userMapper.insert(user);
+            userService.createOrUpdate(user);
+
+//            userMapper.insert(user);
 
             // 手动添加
             response.addCookie(new Cookie("token",token));
 //            //登录成功 写cookie和session
-//            request.getSession().setAttribute("user",githubUser);
+//            request.getSession().setAttribute("user",user);
             return "redirect:/";
         }else {
             //登录失败
             return "redirect:/";
         }
+
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request ,HttpServletResponse response){
+
+        request.getSession().removeAttribute("user");
+
+
+        Cookie cookie = new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+
+        return "redirect:/";
 
     }
 }

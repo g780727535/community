@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>达梦社区</title>
+    <title>多肉社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/community.css"/>
 
     <script src="/dist/jquery.min.js"></script>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>
 </head>
 <body>
 
@@ -30,11 +30,15 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <h4 class="media-heading" >
+                        <a th:href="@{'/question/'+ ${question.id}}" th:text="${question.title}" ></a>
+                    </h4>
                     <span th:text="${question.description}"></span><br>
                     <br>
                     <span class="text-desc">
                         <span th:text="${question.commentCount}"></span>个回复
+
+
                         <span th:text="${question.viewCount}"></span>• 次浏览 •
                         <span th:text="${#dates.format(question.gmtCreate ,'dd MMMM yyyy')}"></span>
                     </span>
@@ -42,6 +46,36 @@
                 </div>
             </div>
 
+<!--            <nav aria-label="Page navigation">-->
+<!--                <ul class="pagination">-->
+<!--                    <li th:if="${pagination.showFirstPage}">-->
+<!--                        <a th:href="@{'/profile/'+${section}(page=${1})}"-->
+<!--                           aria-label="Previous">-->
+<!--                            <span aria-hidden="true">&lt;&lt;</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${pagination.showPrevious}">-->
+<!--                        <a th:href="@{'/profile/'+${section}(page=${pagination.page - 1})}" aria-label="Previous">-->
+<!--                            <span aria-hidden="true">&lt;</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+
+<!--                    <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}? 'active' : ''">-->
+<!--                        <a th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}"></a>-->
+<!--                    </li>-->
+
+<!--                    <li th:if="${pagination.showNext}">-->
+<!--                        <a th:href="@{'/profile/'+${section}(page=${pagination.page +1})}" aria-label="Previous">-->
+<!--                            <span aria-hidden="true">&gt;</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${pagination.showEndPage}">-->
+<!--                        <a th:href="@{'/profile/'+${section}(page=${pagination.totalPage})}" aria-label="Previous">-->
+<!--                            <span aria-hidden="true">&gt;&gt;</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li>
@@ -53,10 +87,7 @@
                         <a href="/"  th:href="@{/(page=${page})}"   th:text="${page}" >
 
                     </a></li>
-<!--                    <li><a href="#">2</a></li>-->
-<!--                    <li><a href="#">3</a></li>-->
-<!--                    <li><a href="#">4</a></li>-->
-<!--                    <li><a href="#">5</a></li>-->
+
                     <li>
                         <a href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
