@@ -64,10 +64,11 @@ public class AuthorizeController {
             user.setToken(token);
 
             user.setName(githubUser.getName());
-            user.setAccountId(String.valueOf(githubUser.getId()));
+
+            user.setAccountId(githubUser.getId());
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-            user.setAvatarurl(githubUser.getAvatar_url());
+            user.setAvatarUrl(githubUser.getAvatar_url());
             System.out.println("用户是+++ " + user);
             userService.createOrUpdate(user);
 

@@ -24,6 +24,8 @@ public class IndexController {
 
 
         PaginationDTO pagination = questionService.list(page,size);
+//        List<Question> questions = questionMapper.selectByExampleWithRowbounds(new QuestionExample(), new RowBounds(offset, size));
+
         model.addAttribute("pagination",pagination);
 
 

@@ -17,4 +17,7 @@ https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribut
 ## 脚本
 """
 sql
+-----
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+
 """

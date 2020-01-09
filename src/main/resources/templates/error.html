@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>多肉社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/community.css"/>
+
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>
+</head>
+<body>
+
+<!--引用通用的块级元素-->
+<div th:insert="navigation :: nav"></div>
+
+
+
+            <div class="jumbotron">
+                <h1>出错啦</h1>
+                <p th:text="${message}">信息有问题，不存在</p>
+                <p><a class="btn btn-primary btn-lg" href="/" role="button">返回首页</a></p>
+            </div>
+
+</body>
+</html>

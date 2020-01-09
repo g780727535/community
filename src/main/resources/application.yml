@@ -1,9 +1,0 @@
-mybatis:
-#  用于搜索类型别名的包
-  type-aliases-package: life.majinag.community.model
-#  用于搜索类型处理程序的包
-  type-handlers-package: life.majinag.community.mapper
-  configuration:
-    map-underscore-to-camel-case: true
-    default-fetch-size: 100
-    default-statement-timeout: 30
